@@ -1,0 +1,55 @@
+version: '3.7'
+
+services:
+    kaito-portfolio:
+        build:
+            context: '.'
+            args:
+                uid: ${UID}
+        container_name: kaito-portfolio
+        restart: unless-stopped
+        environment:
+            - APACHE_RUN_USER=#${UID}
+            - APACHE_RUN_GROUP=#${UID}
+        volumes:
+            - .:/var/www/html
+        ports:
+            - 8080:80
+        networks:
+            - kaito-portfolio-network
+
+    kaito-portfolio-db:
+        image: mysql:8.0.32
+        container_name: kaito-portfolio-db
+        restart: unless-stopped
+        ports:
+            - "3306:3306"
+        volumes:
+            - dbdata:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=123456
+            - MYSQL_DATABASE=portfolio
+            - MYSQL_USER=admin
+            - MYSQL_PASSWORD=123456
+        networks:
+            - kaito-portfolio-network
+
+    kaito-portfolio-phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: kaito-portfolio-phpmyadmin
+        restart: unless-stopped
+        ports:
+            - "8081:80"
+        environment:
+            - PMA_HOST=kaito-portfolio-db
+            - MYSQL_ROOT_PASSWORD=123456
+            - MYSQL_USER=admin
+        networks:
+            - kaito-portfolio-network
+
+networks:
+    kaito-portfolio-network:
+        driver: bridge
+volumes:
+    dbdata:
+        driver: local
