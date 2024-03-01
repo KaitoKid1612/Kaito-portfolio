@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -20,7 +22,8 @@ class ProjectController extends Controller
      */
     public function create(): \Inertia\Response
     {
-        return Inertia::render('Projects/Create');
+        $skills = Skill::all();
+        return Inertia::render('Projects/Create', compact('skills'));
     }
 
     /**
@@ -28,7 +31,31 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'skill_id' => 'required'
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+
+            Project::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'image' => $name,
+                'skill_id' => $request->skill_id,
+                'project_url' => $request->project_url,
+            ]);
+            return redirect()->route('projects.index')
+                ->with('success', 'Project created successfully.');
+        }
+
+        return redirect()->route('projects.index')
+            ->with('error', 'Error creating project.');
     }
 
     /**
