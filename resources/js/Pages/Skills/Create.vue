@@ -1,6 +1,5 @@
 <template>
-    <Head title="Create" />
-
+    <Head title="New Skill" />
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -9,8 +8,8 @@
         </template>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white">
-                <form>
+            <div class="max-w-md mx-auto sm:px-6 lg:px-8 bg-white">
+                <form class="p-4" @submit.prevent="submit">
                     <div>
                         <InputLabel for="name" value="Name" />
                         <TextInput
@@ -54,18 +53,14 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const form = useForm({
     name: "",
-    image: "",
+    image: null,
 });
 
 const submit = () => {
     form.post(route("skills.store"));
 };
 </script>
-
-<style scoped>
-
-</style>
