@@ -104,6 +104,9 @@ class SkillController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $skill = Skill::find($id);
+        $skill->delete();
+        return redirect()->route('skills.index')
+            ->with('success', 'Skill deleted successfully.');
     }
 }
