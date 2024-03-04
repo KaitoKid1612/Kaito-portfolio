@@ -68,7 +68,8 @@ class SkillController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $skill = Skill::find($id);
+        return Inertia::render('Skills/Edit', compact('skill'));
     }
 
     /**
@@ -76,7 +77,26 @@ class SkillController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $skill = Skill::find($id);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+
+            $skill->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'image' => $name
+            ]);
+            return redirect()->route('skills.index')
+                ->with('success', 'Skill updated successfully.');
+        }
     }
 
     /**
