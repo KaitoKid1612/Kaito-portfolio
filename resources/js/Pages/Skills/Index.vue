@@ -49,6 +49,9 @@
                                 <Link :href="`/skills/${skill.id}/edit`" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 text-white rounded-md">
                                     Edit
                                 </Link>
+                                <Link :href="route('skills.destroy', skill.id)" method="delete" class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md p-4 m-2">
+                                    Delete
+                                </Link>
                             </td>
                         </tr>
                         </tbody>
