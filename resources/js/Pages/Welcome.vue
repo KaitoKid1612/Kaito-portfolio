@@ -1,26 +1,14 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
+import Frontend from "@/Layouts/Frontend.vue";
 
-defineProps({
-    canLogin: {
-        type: Boolean,
-    },
-    canRegister: {
-        type: Boolean,
-    },
-    laravelVersion: {
-        type: String,
-        required: true,
-    },
-    phpVersion: {
-        type: String,
-        required: true,
-    },
-});
 </script>
 
 <template>
     <Head title="Welcome to my Channel" />
+    <Frontend>
+
+    </Frontend>
 </template>
 
 <style>
