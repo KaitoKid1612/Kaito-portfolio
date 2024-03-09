@@ -11,22 +11,22 @@ Kaito Portfolio is a web application that allows users to create their own portf
 - User Authentication
 - User Profile
 - Portfolio Creation
-- Portfolio Management
 - Portfolio Showcase
 - Portfolio Sharing
 - Portfolio Commenting
-- Portfolio Rating
-- Portfolio Search
-- Portfolio Filtering
-- Portfolio Sorting
-- Portfolio Categories
-- Portfolio Tags
-- Portfolio Likes
 - Portfolio Views
-- Portfolio Analytics
-- Portfolio Export
-- Portfolio Import
-- Portfolio Backup
+
+## About Course
+### Laravel 10 and Vue.js Fullstack Web Development
+This is the repository for the course [Laravel 8 and Vue.js Fullstack Web Development](https://www.udemy.com/course/laravel-8-and-vuejs-fullstack-web-development/). The course is a fullstack web development course that teaches students how to build a web application using Laravel and VueJs. The course covers the following topics:
+### Resources
+- https://tailwindcomponents.com/
+- https://tailwindui.com/
+- https://flowbite.com/
+- https://www.hyperui.dev/
+- https://merakiui.com/
+- https://www.tailwind-kit.com/
+- https://tailgrids.com/
 
 ## Installation
 
