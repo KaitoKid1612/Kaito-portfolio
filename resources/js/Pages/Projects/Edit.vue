@@ -24,7 +24,7 @@
                                 {{ skill.name }}
                             </option>
                         </select>
-                        <InputError class="mt-2" :message="form.errors.skill_id" />
+                        <InputError class="mt-2" :message="$page.props.errors.skill_id" />
                         <InputLabel for="name" value="Name" />
                         <TextInput
                             id="name"
@@ -34,7 +34,7 @@
                             autofocus
                             autocomplete="username"
                         />
-                        <InputError class="mt-2" :message="form.errors.name" />
+                        <InputError class="mt-2" :message="$page.props.errors.name" />
                     </div>
                     <div>
                         <InputLabel for="project_url" value="URL" />
@@ -45,7 +45,7 @@
                             v-model="form.project_url"
                             autocomplete="projecturl"
                         />
-                        <InputError class="mt-2" :message="form.errors.project_url" />
+                        <InputError class="mt-2" :message="$page.props.errors.project_url" />
                     </div>
                     <div class="mt-2">
                         <InputLabel for="image" value="Image" />
@@ -55,7 +55,7 @@
                             class="mt-1 block w-full"
                             @input="form.image = $event.target.files[0]"
                         />
-                        <InputError class="mt-2" :message="form.errors.image" />
+                        <InputError class="mt-2" :message="$page.props.errors.image" />
                     </div>
                     <div class="flex items-center justify-end mt-4">
                         <PrimaryButton
@@ -63,7 +63,7 @@
                             :class="{ 'opacity-25': form.processing }"
                             :disabled="form.processing"
                         >
-                            Store
+                            Update
                         </PrimaryButton>
                     </div>
                 </form>
@@ -74,28 +74,35 @@
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import {Head, useForm} from '@inertiajs/vue3';
+import {Head, useForm, router} from '@inertiajs/vue3';
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 
-defineProps({
+const props = defineProps({
     skills: {
         type: Array,
         required: true,
     },
+    project: Object,
 });
 
 const form = useForm({
-    name: "",
-    skill_id: "",
+    name: props.project?.name,
+    skill_id: props.project?.skill_id,
     image: null,
-    project_url: "",
+    project_url: props.project?.project_url,
 });
 
 const submit = () => {
-    form.post(route("projects.store"));
+    router.post(`/projects/${props.project.id}`, {
+        _method: "PUT",
+        name: form.name,
+        skill_id: form.skill_id,
+        image: form.image,
+        project_url: form.project_url,
+    });
 };
 </script>
 
