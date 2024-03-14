@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="hidden lg:flex flex-1 justify-end items-end h-full">
-                <img class="" src="" alt="Hero Image" />
+                <img class="rounded-lg" src="" alt="Hero Image" />
             </div>
         </div>
     </section>
