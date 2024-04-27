@@ -1,6 +1,6 @@
 <p align="center" style="display: flex">
 <a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a><a style="margin-top: 30px" href=""><img src="https://cli.vuejs.org/favicon.png" width="100" height="80" alt="VueJs Logo"></a>
-</p>
+</p> 
 
 ## About Kaito Portfolio
 
