@@ -23,7 +23,7 @@ class SkillController extends Controller
      */
     public function create(): \Inertia\Response
     {
-        return Inertia::render('Skills/Create');
+        return Inertia::render('Skills/Create')->with('message', 'Skill created successfully.');
     }
 
     /**
@@ -48,7 +48,7 @@ class SkillController extends Controller
                 'image' => $name
             ]);
             return redirect()->route('skills.index')
-                ->with('success', 'Skill created successfully.');
+                ->with('message', 'Skill created successfully.');
         }
 
         return redirect()->route('skills.index')
@@ -95,7 +95,7 @@ class SkillController extends Controller
                 'image' => $name
             ]);
             return redirect()->route('skills.index')
-                ->with('success', 'Skill updated successfully.');
+                ->with('message', 'Skill updated successfully.');
         }
     }
 
@@ -107,6 +107,6 @@ class SkillController extends Controller
         $skill = Skill::find($id);
         $skill->delete();
         return redirect()->route('skills.index')
-            ->with('success', 'Skill deleted successfully.');
+            ->with('message', 'Skill deleted successfully.');
     }
 }

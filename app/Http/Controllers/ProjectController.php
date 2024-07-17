@@ -25,7 +25,7 @@ class ProjectController extends Controller
     public function create(): \Inertia\Response
     {
         $skills = Skill::all();
-        return Inertia::render('Projects/Create', compact('skills'));
+        return Inertia::render('Projects/Create', compact('skills'))->with('message', 'Project created successfully.');
     }
 
     /**
@@ -53,7 +53,7 @@ class ProjectController extends Controller
                 'project_url' => $request->project_url,
             ]);
             return redirect()->route('projects.index')
-                ->with('success', 'Project created successfully.');
+                ->with('message', 'Project created successfully.');
         }
 
         return redirect()->route('projects.index')
@@ -105,7 +105,7 @@ class ProjectController extends Controller
 
         $project->save();
         return redirect()->route('projects.index')
-            ->with('success', 'Project updated successfully.');
+            ->with('message', 'Project updated successfully.');
     }
 
     /**
@@ -116,6 +116,6 @@ class ProjectController extends Controller
         $project = Project::find($id);
         $project->delete();
         return redirect()->route('projects.index')
-            ->with('success', 'Project deleted successfully.');
+            ->with('message', 'Project deleted successfully.');
     }
 }
