@@ -30,7 +30,7 @@
             <h2 class="text-3xl lg:text-4xl font-medium lg:font-extrabold mb-3">
               About Me
             </h2>
-            <P class="mb-4 text-accent">Freelance frontend Web developer</P>
+            <P class="mb-4 text-accent">Freelance Full-Stack Web developer</P>
             <hr class="mb-8 opacity-90 dark:opacity-5" />
             <p class="mb-8">
               Lorem ipsum dolor sit amet consectetur adipisicing elit tempore
