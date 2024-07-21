@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,8 @@ Route::get('/', function () {
     ]);
 });
 
+Route::post('/contact', ContactController::class)->name('contact');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
@@ -34,4 +37,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('projects', \App\Http\Controllers\ProjectController::class);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
