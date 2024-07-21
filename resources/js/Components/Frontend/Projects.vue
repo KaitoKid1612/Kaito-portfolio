@@ -82,3 +82,16 @@ const filterProjects = (id) => {
     </section>
   </div>
 </template>
+
+<style scoped>
+@media (min-width: 1536px) {
+    .container {
+        max-width: 1280px;
+    }
+}
+
+.container {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+</style>
